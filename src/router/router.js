@@ -4,14 +4,23 @@ const routes = [
 
   {
     path: '/',
+    redirect:'/home',
+   
+  },
+  
+  {
+    path: '/home',
+    name:'home',
     component: () => import(/* webpackChunkBame: "AboutPage"*/'@/modules/pokemon/pages/ListPage')
   },
   {
     path: '/about',
+    name:'about',
     component: () => import('@/modules/pokemon/pages/AboutPage')
   },
   {
-    path: '/:id',
+    path: '/pokemonid/:id',
+    name:'pokemon-id',
     component: () => import('@/modules/pokemon/pages/PokemonPage'),
     props: (route) => {
       const { id } = route.params
