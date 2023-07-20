@@ -1,4 +1,6 @@
+
 import { createRouter, createWebHashHistory } from "vue-router";
+import isAuthenticatedGuard from "./auth-guard";
 
 const routes = [
   {
@@ -47,6 +49,7 @@ const routes = [
   {
     path:"/dgz",
     name:"dgz",
+    beforeEnter:[isAuthenticatedGuard], //listado con todos los guard que necesitamos
     component: ()=>import('@/modules/dbz/layouts/DragonBallLayout'),
     children:[
       {
@@ -78,5 +81,38 @@ const router = createRouter({
   routes, // short for `routes: routes`
 });
 
+//-----------------guard para proteccion de rutas -----------------
+
+//este es un guard global ya que se va a ejecutar antes de entrar a cualquier ruta
+
+/*router.beforeEach((to,from,next)=>{
+
+  if(Math.random()*100>50) {
+    next()
+  } else{
+    console.log("you are not authorized");
+    next({name:'pokemon'})
+  }
+   })
+const canAccess=()=>{
+return new Promise((resolve, reject) => {
+  if(Math.random()*100>50) {
+    console.log("Autenticado - Autorizado");
+    resolve(true)
+  } else{
+    console.log("you are not authorized");
+    resolve(false)
+  }
+})
+}
+router.beforeEach(async(to,from,next)=>{
+  const authorized= await canAccess();
+
+  authorized
+    ? next()
+    : next({name:'pokemon'})
+
+})
+*/
 //luego lo importamos en el main.js
 export default router;

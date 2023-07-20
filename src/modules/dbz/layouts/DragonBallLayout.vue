@@ -1,14 +1,16 @@
 <template>
-  <h1>DBZ Layout</h1>
-  <router-view></router-view>
+  <div class="dbz">
+    <h1>DBZ Layout</h1>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style>
-
+<style scoped>
+.dbz{
+  background-color: green;
+}
 </style>
